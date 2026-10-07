@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secura — Guía contra enlaces fraudulentos</title>
+<link rel="icon" href="icon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  (function(){
+    try{
+      const saved = localStorage.getItem('secura-theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'light');
+      if(theme === 'dark'){
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    }catch(e){}
+  })();
+</script>
+</head>
+<body>
+
+<header class="site">
+  <div class="navbar">
+    <a class="brand" href="#top">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <path d="M15 2 L26 6.5 V15 C26 21.5 21.2 26 15 28 C8.8 26 4 21.5 4 15 V6.5 Z" fill="#290087"/>
+        <path d="M10.5 15.2 L13.5 18.2 L19.7 11.5" stroke="#F2E0A4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      Secura
+    </a>
+    <nav class="links" aria-label="Navegación principal">
+      <a href="#que-es">Qué es</a>
+      <a href="#tipos">Tipos de ataque</a>
+      <a href="#inspector">Detecta el enlace falso</a>
+      <a href="#senales">Señales</a>
+      <a href="#recursos">Recursos</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false">
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M17 11.5A7.5 7.5 0 0 1 8.5 3 7.5 7.5 0 1 0 17 11.5Z" fill="currentColor"/>
+        </svg>
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="4" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <line x1="10" y1="1.2" x2="10" y2="3.4"/>
+            <line x1="10" y1="16.6" x2="10" y2="18.8"/>
+            <line x1="1.2" y1="10" x2="3.4" y2="10"/>
+            <line x1="16.6" y1="10" x2="18.8" y2="10"/>
+            <line x1="3.8" y1="3.8" x2="5.3" y2="5.3"/>
+            <line x1="14.7" y1="14.7" x2="16.2" y2="16.2"/>
+            <line x1="3.8" y1="16.2" x2="5.3" y2="14.7"/>
+            <line x1="14.7" y1="5.3" x2="16.2" y2="3.8"/>
+          </g>
+        </svg>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menú">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+          <path d="M4 7h18M4 13h18M4 19h18" stroke="currentColor" style="color:var(--ultramarine)" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil">
+    <a href="#que-es">Qué es</a>
+    <a href="#tipos">Tipos de ataque</a>
+    <a href="#inspector">Detecta el enlace falso</a>
+    <a href="#senales">Señales</a>
+    <a href="#recursos">Recursos</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Secura Proyecto de Ciberseguridad </span>
+        <h1>Antes de hacer clic, <em>revisa el enlace.</em></h1>
+        <p class="lead">Secura es una guía pensada para personas adultas mayores en la GAM,
+        para reconocer links de entidades financieras que buscan robar tu información
+        y tu dinero — explicado sin tecnicismos.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#inspector">Ver ejemplos reales →</a>
+          <a class="btn btn-ghost" href="#senales">Señales de alerta</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <div class="fake-msg">
+          <div class="from">📧 "Banco Nacional CR"</div>
+          <div>Su cuenta será suspendida hoy. Verifique sus datos de inmediato para evitar el bloqueo.</div>
+          <span class="url-fake">bancocr-verificacion.com/login</span>
+        </div>
+        <div class="callout">
+          <span>⚠️</span>
+          <span>Urgencia, mayúsculas y un dominio que <strong>no</strong> pertenece al banco real: tres señales típicas de phishing.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="domain-checker section-paper" id="verificador" aria-labelledby="verificador-titulo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Verificación rápida</span>
+      <h2 id="verificador-titulo">Comprueba un enlace antes de abrirlo</h2>
+      <p>Escribe la URL completa y compárala con la lista de dominios oficiales.</p>
+    </div>
+    <form class="domain-checker-form" id="domainCheckerForm">
+      <label for="urlToCheck">URL que quieres comprobar</label>
+      <div class="domain-checker-input">
+        <input id="urlToCheck" name="urlToCheck" type="url" placeholder="https://www.ejemplo.com" autocomplete="url" required>
+        <button class="btn btn-primary" type="submit">Comprobar enlace</button>
+      </div>
+    </form>
+    <div class="domain-result" id="domainResult" role="status" aria-live="polite" hidden></div>
+  </div>
+</section>
+
+  <!-- QUE ES -->
+  <section id="que-es">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Para entenderlo bien</span>
+        <h2>¿Qué es el phishing?</h2>
+        <p>Es una técnica de <mark>ingeniería social</mark> que usa el cibercrimen para
+        obtener tus datos personales. El ataque casi siempre llega disfrazado de un
+        mensaje de una entidad de confianza: tu banco, una red social o una institución
+        del gobierno, pidiéndote que "verifiques" algo con urgencia.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="icon" aria-hidden="true">🎭</div>
+          <h3>Suplantación de identidad</h3>
+          <p>También llamada <em>spoofing</em>: alguien se hace pasar por una persona,
+          empresa o entidad para que el engaño parezca real. Puede ser un perfil falso
+          en redes sociales o una página web idéntica a la de tu banco.</p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true">🔗</div>
+          <h3>Enlaces maliciosos</h3>
+          <p>Direcciones diseñadas para robar tus claves o instalar programas espía.
+          Suelen esconder su verdadero destino con acortadores o cambiando una sola
+          letra del nombre real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPOS DE ATAQUE -->
+  <section id="tipos" class="section-paper">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Según el medio que usan</span>
+        <h2>Tres formas en que puede llegar</h2>
+        <p>El nombre cambia según el canal, pero el objetivo es siempre el mismo:
+        que entregues información sin darte cuenta.</p>
+      </div>
+      <div class="attack-carousel" id="attackCarousel" role="region" aria-roledescription="carrusel" aria-label="Tipos de ataque" tabindex="0">
+        <div class="attack-viewport">
+          <div class="attack-track">
+            <article class="attack-slide" aria-label="1 de 3">
+              <div class="card">
+                <div class="icon" aria-hidden="true">✉️</div>
+                <h3>Phishing</h3>
+                <p>Por correo electrónico. Busca robar tus datos mediante enlaces falsos
+                que imitan a una entidad conocida.</p>
+              </div>
+            </article>
+            <article class="attack-slide" aria-label="2 de 3" aria-hidden="true">
+              <div class="card">
+                <div class="icon" aria-hidden="true">💬</div>
+                <h3>Smishing</h3>
+                <p>Igual, pero por mensajería: SMS o WhatsApp. A menudo llega como un
+                "paquete pendiente" o una alerta bancaria.</p>
+              </div>
+            </article>
+            <article class="attack-slide" aria-label="3 de 3" aria-hidden="true">
+              <div class="card">
+                <div class="icon" aria-hidden="true">📞</div>
+                <h3>Vishing</h3>
+                <p>Estafas realizadas mediante llamadas telefónicas de voz, donde alguien
+                se hace pasar por soporte técnico o personal bancario.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-arrow" type="button" data-carousel-prev aria-label="Tipo de ataque anterior">←</button>
+          <div class="carousel-dots" role="tablist" aria-label="Seleccionar tipo de ataque">
+            <button class="carousel-dot active" type="button" role="tab" aria-selected="true" aria-label="Mostrar Phishing" data-carousel-slide="0"></button>
+            <button class="carousel-dot" type="button" role="tab" aria-selected="false" aria-label="Mostrar Smishing" data-carousel-slide="1"></button>
+            <button class="carousel-dot" type="button" role="tab" aria-selected="false" aria-label="Mostrar Vishing" data-carousel-slide="2"></button>
+          </div>
+          <button class="carousel-arrow" type="button" data-carousel-next aria-label="Tipo de ataque siguiente">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE: LINK INSPECTOR -->
+  <section id="inspector">
+    <div class="wrap">
+      <div class="inspector">
+        <div class="section-head">
+          <span class="tag tag-light">Ejercicio práctico</span>
+          <h2>Encuentra la diferencia</h2>
+          <p>Muchos enlaces falsos se ven casi idénticos a los reales. Elige un
+          ejemplo y presiona el botón para revelar qué los delata.</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Ejemplos de enlaces">
+          <button class="tab-btn" role="tab" aria-selected="true" data-panel="p1">Letra cambiada</button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-panel="p2">Enlace acortado</button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-panel="p3">Correo urgente</button>
+        </div>
+
+        <!-- Panel 1 -->
+        <div class="inspect-panel active" id="p1">
+          <div class="screen">
+            <div class="meta">Mensaje recibido por correo</div>
+            <div class="bubble">
+              "Estimado cliente, detectamos un acceso inusual. Confirme su identidad
+              en el siguiente enlace:"
+              <div class="url-chip" id="chip1">https://oc<span class="flag">ụ</span>.org/login</div>
+            </div>
+            <button class="reveal-btn" data-target="chip1" data-list="why1">Revelar diferencia</button>
+          </div>
+          <ul class="why-list" id="why1">
+            <li><span class="dot"></span> La letra "u" fue reemplazada por "ụ", un carácter casi idéntico a simple vista.</li>
+            <li><span class="dot"></span> El dominio real de la organización es <strong>ocu.org</strong>, sin ese punto debajo de la letra.</li>
+            <li><span class="dot"></span> Este truco se llama suplantación por caracteres similares (homógrafos).</li>
+          </ul>
+        </div>
+
+        <!-- Panel 2 -->
+        <div class="inspect-panel" id="p2">
+          <div class="screen">
+            <div class="meta">Mensaje recibido por WhatsApp</div>
+            <div class="bubble">
+              "Su paquete no pudo entregarse. Reprograme aquí:"
+              <div class="url-chip" id="chip2">bit.ly/<span class="flag">3xKq9F</span></div>
+            </div>
+            <button class="reveal-btn" data-target="chip2" data-list="why2">Revelar diferencia</button>
+          </div>
+          <ul class="why-list" id="why2">
+            <li><span class="dot"></span> Un acortador como bit.ly esconde el destino real del enlace.</li>
+            <li><span class="dot"></span> Ninguna empresa de paquetería seria pide confirmar datos por un enlace acortado.</li>
+            <li><span class="dot"></span> Si no reconoces el remitente, mejor no lo abras: entra directamente a la app oficial.</li>
+          </ul>
+        </div>
+
+        <!-- Panel 3 -->
+        <div class="inspect-panel" id="p3">
+          <div class="screen">
+            <div class="meta">Remitente del correo</div>
+            <div class="bubble">
+              soporte@<span style="opacity:.8">bancocr</span><span class="flag" id="chip3">-seguro</span>.com
+              <br><br>
+              "Su cuenta será suspendida hoy. Verifique sus datos de inmediato."
+            </div>
+            <button class="reveal-btn" data-target="chip3" data-list="why3">Revelar diferencia</button>
+          </div>
+          <ul class="why-list" id="why3">
+            <li><span class="dot"></span> El dominio oficial del banco no lleva palabras añadidas como "-seguro".</li>
+            <li><span class="dot"></span> Frases con urgencia ("hoy", "de inmediato") buscan que actúes sin pensar.</li>
+            <li><span class="dot"></span> Ante la duda, llama al banco a un número que ya conocías antes del mensaje.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÑALES DE ALERTA -->
+  <section id="senales" class="section-paper">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Repaso rápido</span>
+        <h2>Marca las señales que ya reconoces</h2>
+        <p>Entre más marques, mejor preparado estás para detectarlas la próxima vez.</p>
+      </div>
+      <ul class="checklist" id="checklist">
+        <li><label><input type="checkbox"> El mensaje te apura con una amenaza o un plazo corto</label></li>
+        <li><label><input type="checkbox"> El remitente no coincide exactamente con la entidad real</label></li>
+        <li><label><input type="checkbox"> Te piden clave, tarjeta o datos personales por enlace</label></li>
+        <li><label><input type="checkbox"> El enlace usa un acortador o letras raras en el dominio</label></li>
+        <li><label><input type="checkbox"> Recibiste el mensaje sin haberlo esperado</label></li>
+        <li><label><input type="checkbox"> Hay errores de ortografía o redacción extraña</label></li>
+      </ul>
+      <p class="progress-line" id="progress-line">0 de 6 señales marcadas</p>
+    </div>
+  </section>
+
+  <!-- QUE HACER -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Si ya diste clic</span>
+        <h2>Qué hacer si crees que caíste</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div><h3>No entres en pánico</h3><p>Actuar rápido ayuda, pero con calma se piensa mejor.</p></div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div><h3>Llama a tu banco por un número conocido</h3><p>Usa el que ya tenías guardado antes, nunca el que venía en el mensaje sospechoso.</p></div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div><h3>Cambia tus claves</h3><p>Empieza por el correo y las cuentas bancarias, desde un dispositivo seguro.</p></div>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <div><h3>Cuéntaselo a alguien de confianza</h3><p>Un familiar o alguien capacitado puede ayudarte a verificar los siguientes pasos.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECURSOS -->
+  <section id="recursos" class="section-paper">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Herramientas de apoyo</span>
+        <h2>Sitios que te ayudan a verificar un enlace</h2>
+        <p>Estas páginas permiten analizar un enlace antes de abrirlo. Secura busca
+        explicar lo mismo, pero con un lenguaje más sencillo.</p>
+      </div>
+      <div class="grid-3">
+        <div class="resource-card">
+          <h3>Google Safe Browsing</h3>
+          <p>Revisa si un sitio ha sido marcado como peligroso.</p>
+          <a class="go" href="https://transparencyreport.google.com/safe-browsing/search" target="_blank" rel="noopener">Consultar enlace →</a>
+        </div>
+        <div class="resource-card">
+          <h3>VirusTotal</h3>
+          <p>Analiza un enlace o archivo con múltiples motores de seguridad.</p>
+          <a class="go" href="https://www.virustotal.com" target="_blank" rel="noopener">Consultar enlace →</a>
+        </div>
+        <div class="resource-card">
+          <h3>PhishTank</h3>
+          <p>Base de datos comunitaria de sitios reportados como phishing.</p>
+          <a class="go" href="https://phishtank.org" target="_blank" rel="noopener">Consultar enlace →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h4>Secura</h4>
+    <p style="max-width:60ch; color:var(--periwinkle); margin:0;">
+      Proyecto de investigación: ataques de ingeniería social en la GAM en la
+      población de adultos mayores en Costa Rica, 2025-2026.
+    </p>
+    <ul class="authors">
+      <li>Daniel Alejandro Alfaro Brenes</li>
+      <li>Asdriel Matías Chacón Rojas</li>
+      <li>Dereck Sebastián Marchena Cordero</li>
+      <li>Fabricio Morales Chacón</li>
+      <li>Luis Diego Rizo Romero</li>
+      <li>Randall Vindas Fallas</li>
+    </ul>
+    <p class="meta-line">
+      Proyecto  Expotec de ciber seguridad 2026
+     
+    </p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
