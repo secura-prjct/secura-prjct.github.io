@@ -986,3 +986,9 @@ footer .meta-line{font-size:1rem; color:rgba(246,255,233,.85);}
 [data-theme="dark"] .resource-card .lang-note{color:#E08AE2;}
 .nowrap{white-space:nowrap;}
 .btn-call{flex-wrap:wrap; justify-content:center; text-align:center;}
+
+/* Banda final de "¿Qué es phishing?": textos y botón en blanco en modo oscuro */
+[data-theme="dark"] .cta-band,
+[data-theme="dark"] .cta-band h2,
+[data-theme="dark"] .cta-band p,
+[data-theme="dark"] .cta-band .btn-primary{color:#FFFFFF;}
