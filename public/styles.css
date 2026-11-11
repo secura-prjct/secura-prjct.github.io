@@ -893,3 +893,96 @@
 
 /* Ayuda, modo oscuro: nombre de cada paso en color claro */
 [data-theme="dark"] .step h3{color:var(--vanilla);}
+
+/* =========================================================
+   Lectura cómoda para personas adultas mayores
+   - Letra mínima de 1rem (19 px) y sin transparencias en el texto
+   - Resultado del verificador con ícono grande
+   - Botón "Pegar enlace", botón de llamada y nota de confianza
+   ========================================================= */
+
+/* Letra mínima y textos sin opacidad */
+.lang-toggle .lang-label{font-size:1rem;}
+nav.links a{font-size:1.05rem;}
+.eyebrow, .tag{font-size:1rem;}
+.hero-card .fake-msg, .hero-card .fake-msg .url-fake, .hero-card .callout{font-size:1rem;}
+.section-head p{opacity:1; font-size:1.1rem;}
+.card p, .step p{opacity:1;}
+.btn-small{font-size:1.05rem;}
+.swipe-hint, .flip-tap{font-size:1.05rem;}
+.attack-media figcaption{font-size:1rem; opacity:1;}
+.result-count{font-size:1.05rem;}
+footer .authors{font-size:1rem;}
+footer .meta-line{font-size:1rem; color:rgba(246,255,233,.85);}
+@media (max-width:600px){
+  .section-head p{font-size:1.05rem;}
+  .eyebrow{font-size:1rem;}
+}
+
+/* Botón principal más grande */
+.btn-big{font-size:1.2rem; padding:17px 30px;}
+
+/* Nota de confianza */
+.trust-note{
+  display:flex; gap:12px; align-items:flex-start;
+  margin:18px 0 0; padding:14px 18px;
+  background:var(--honeydew); color:var(--ink);
+  border:2px solid var(--periwinkle); border-radius:14px;
+  font-weight:700; font-size:1.05rem; line-height:1.45;
+}
+.trust-note > span:first-child{font-size:1.4rem; line-height:1.1;}
+[data-theme="dark"] .trust-note{background:#21194d; border-color:rgba(242,224,164,.3); color:#F6FFE9;}
+
+/* Formulario del verificador: campo + Pegar, y debajo los botones */
+.domain-checker-form label{font-size:1.15rem;}
+.domain-checker-input input{font-size:1.1rem; padding:15px 16px; min-height:58px;}
+.btn-paste{white-space:nowrap;}
+.domain-checker-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;}
+@media (max-width:600px){
+  .domain-checker-input .btn-paste{flex:1 1 100%; width:100%; justify-content:center;}
+  .domain-checker-actions .btn{flex:1 1 100%; width:100%; justify-content:center;}
+}
+
+/* Resultado: ícono grande a la izquierda, texto a la derecha */
+.domain-result{
+  display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:start;
+  border-left-width:8px; padding:22px 24px;
+}
+.domain-result[hidden]{display:none;}
+.domain-result .result-icon{
+  display:flex; align-items:center; justify-content:center;
+  width:64px; height:64px; border-radius:50%;
+  background:rgba(255,255,255,.75); font-size:2.2rem; line-height:1;
+}
+[data-theme="dark"] .domain-result .result-icon{background:rgba(255,255,255,.12);}
+.domain-result .result-title{
+  display:block; font-family:'Fraunces', serif; font-weight:700;
+  font-size:1.6rem; line-height:1.2; margin:4px 0 6px;
+}
+.domain-result .result-detail{font-weight:400; font-size:1.1rem; margin:8px 0 4px;}
+.domain-result .result-steps-title{font-weight:700; margin:14px 0 6px;}
+.domain-result.info{background:#eef0fb; border-color:var(--ultramarine); color:var(--ink);}
+[data-theme="dark"] .domain-result.info{background:#21194d; border-color:var(--vanilla); color:#F6FFE9;}
+@media (max-width:600px){
+  .domain-result{grid-template-columns:1fr; gap:10px; padding:18px;}
+  .domain-result .result-icon{width:56px; height:56px; font-size:1.9rem;}
+  .domain-result .result-title{font-size:1.4rem;}
+}
+
+/* Botón para llamar */
+.btn-call{
+  margin-top:14px; background:#2f855a; color:#fff;
+  font-size:1.15rem; padding:15px 26px;
+}
+.btn-call:hover{filter:brightness(1.08);}
+[data-theme="dark"] .btn-call{background:#68d391; color:#0F1410;}
+.step .btn-call{color:#fff; text-decoration:none;}
+[data-theme="dark"] .step .btn-call{color:#0F1410;}
+@media (max-width:600px){ .btn-call{width:100%; justify-content:center;} }
+
+/* Otros recursos: aviso de pestaña nueva e idioma */
+.resource-card .new-tab{font-weight:400; font-size:1rem;}
+.resource-card .lang-note{margin:0; font-size:1rem; font-weight:700; color:var(--amethyst);}
+[data-theme="dark"] .resource-card .lang-note{color:#E08AE2;}
+.nowrap{white-space:nowrap;}
+.btn-call{flex-wrap:wrap; justify-content:center; text-align:center;}

@@ -11,38 +11,45 @@ const S = {
     toDark:'Cambiar a modo oscuro', toLight:'Cambiar a modo claro',
     whatToDo:'Qué hacer:',
     // Verificador (IA)
-    invalidMsg:'Escribí un enlace web completo y válido.',
-    invalidDetail:'Por ejemplo: https://www.ejemplo.com. El enlace no fue enviado a la IA.',
-    loadingMsg:'SECURA está analizando el enlace…',
-    loadingDetail:'Se revisa el texto de la dirección. Algunas consultas se envían a Google Gemini.',
-    serverFail:'El servidor no pudo analizar el enlace.',
-    serverBad:'El servidor devolvió una respuesta inesperada.',
-    estimate:p=>'Estimación del modelo para la categoría maliciosa: '+p+'% (no es una certeza).',
-    noEstimate:'No fue posible mostrar la estimación numérica del modelo.',
-    dangerMsg:'SECURA encontró señales que requieren mucha precaución.',
-    unsureMsg:'SECURA recomienda precaución con este enlace.',
-    unsureDetail:'No se confirmó que el enlace sea seguro.',
-    safeMsg:'La IA no detectó patrones sospechosos en este enlace.',
-    safeDetail:'Importante: esto NO garantiza que el enlace sea seguro. No introduzcas datos sensibles si tenés dudas.',
-    errMsg:'No se pudo completar el análisis.',
-    timeout:'La solicitud tardó demasiado. Probá nuevamente.',
-    detailLabel:'Detalle: ',
-    errNoClass:'Sin un análisis completo, SECURA no clasifica el enlace.',
+    invalidMsg:'Revise el enlace que pegó.',
+    invalidDetail:'Debe verse parecido a: www.ejemplo.com. Copie el enlace completo del mensaje y vuelva a intentarlo.',
+    emptyMsg:'Primero pegue un enlace.',
+    emptyDetail:'Copie el enlace del mensaje que recibió y toque “Pegar enlace”.',
+    loadingMsg:'Revisando el enlace…',
+    loadingDetail:'Esto puede tardar hasta 10 segundos. No cierre la página.',
+    serverFail:'No pudimos revisar el enlace en este momento.',
+    serverBad:'No pudimos revisar el enlace en este momento.',
+    dangerMsg:'No abra este enlace',
+    unsureMsg:'Tenga cuidado con este enlace',
+    unknownMsg:'No podemos confirmar que este enlace sea seguro',
+    unknownDetail:'Ante la duda, no lo abra.',
+    safeMsg:'Esta dirección coincide con la oficial',
+    safeDetail:'Aun así, nunca dé su clave, PIN ni códigos si se los piden por mensaje o llamada.',
+    errMsg:'No pudimos revisar el enlace',
+    errRetry:'Intente de nuevo en un momento. Mientras tanto, no lo abra.',
+    timeout:'La revisión tardó demasiado. Intente de nuevo en un momento. Mientras tanto, no lo abra.',
     safetySteps:[
-      'No ingreses contraseñas, códigos ni datos bancarios en el enlace.',
-      'Ingresá a tu institución desde su aplicación oficial o escribiendo la dirección que ya conocías.',
-      'Si ya compartiste datos, contactá a la institución por sus canales oficiales.'
+      'No escriba contraseñas, códigos ni datos bancarios en ese enlace.',
+      'Para entrar a su banco, use su aplicación oficial o escriba usted mismo la dirección que ya conoce.',
+      'Si ya compartió datos, llame a su banco al número que aparece al reverso de su tarjeta.'
     ],
+    // Botón "Pegar enlace"
+    pasteEmptyMsg:'No hay ningún enlace copiado.',
+    pasteEmptyDetail:'Primero copie el enlace del mensaje (mantenga el dedo sobre el enlace y elija “Copiar”) y luego toque “Pegar enlace”.',
+    pasteDeniedMsg:'Su navegador no permitió pegar automáticamente.',
+    pasteDeniedDetail:'Toque el cuadro blanco, mantenga el dedo presionado y elija “Pegar”. En computadora, también puede usar Ctrl + V.',
+    pasteOkMsg:'Enlace pegado.',
+    pasteOkDetail:'Ahora toque “Comprobar enlace”.',
     // Repaso
     count:(n,total)=>n+' de '+total+' señales marcadas',
     repaso:[
-      'Marca las señales que ya reconoces. Si alguna no te suena, vuelve a mirar el ejercicio práctico.',
-      'Vas empezando. Repasa el ejercicio práctico para conocer las señales que te faltan.',
-      'Vas empezando. Repasa el ejercicio práctico para conocer las señales que te faltan.',
-      '¡Buen avance! Ya reconoces varias señales. Ante la duda, no abras el enlace y compruébalo antes.',
-      '¡Buen avance! Ya reconoces varias señales. Ante la duda, no abras el enlace y compruébalo antes.',
-      '¡Muy bien! Casi las conoces todas. Repasa la que te falta.',
-      '¡Felicidades! Reconoces las 6 señales de alerta. Recuerda: ante la duda, no hagas clic y comprueba el enlace.'
+      'Marque las señales que ya reconoce. Si alguna no le suena, vuelva a ver el ejercicio práctico.',
+      'Va empezando. Repase el ejercicio práctico para conocer las señales que le faltan.',
+      'Va empezando. Repase el ejercicio práctico para conocer las señales que le faltan.',
+      '¡Buen avance! Ya reconoce varias señales. Ante la duda, no abra el enlace y revíselo antes.',
+      '¡Buen avance! Ya reconoce varias señales. Ante la duda, no abra el enlace y revíselo antes.',
+      '¡Muy bien! Ya casi las conoce todas. Repase la que le falta.',
+      '¡Felicidades! Reconoce las 6 señales de alerta. Recuerde: ante la duda, no haga clic y revise el enlace.'
     ]
   },
   en: {
@@ -50,29 +57,35 @@ const S = {
     toDark:'Switch to dark mode', toLight:'Switch to light mode',
     whatToDo:'What to do:',
     // Checker (AI)
-    invalidMsg:'Enter a complete and valid web link.',
-    invalidDetail:'For example: https://www.example.com. The link was not sent to the AI.',
-    loadingMsg:'SECURA is analyzing the link…',
-    loadingDetail:'The address text is checked. Some requests are sent to Google Gemini.',
-    serverFail:'The server could not analyze the link.',
-    serverBad:'The server returned an unexpected response.',
-    estimate:p=>'Model estimate for the malicious category: '+p+'% (this is not certainty).',
-    noEstimate:'The model’s numeric estimate could not be displayed.',
-    dangerMsg:'SECURA found signs that require extra caution.',
-    unsureMsg:'SECURA recommends caution with this link.',
-    unsureDetail:'The link was not confirmed to be safe.',
-    safeMsg:'The AI did not detect suspicious patterns in this link.',
-    safeDetail:'Important: this does NOT guarantee the link is safe. Do not enter sensitive data if you have doubts.',
-    errMsg:'The analysis could not be completed.',
-    timeout:'The request took too long. Please try again.',
-    detailLabel:'Detail: ',
-    errHelp:'To use the AI, open this page at http://127.0.0.1:5000 after running python servidor.py.',
-    errNoClass:'Without a complete analysis, SECURA does not classify the link.',
+    invalidMsg:'Check the link you pasted.',
+    invalidDetail:'It should look like: www.example.com. Copy the whole link from the message and try again.',
+    emptyMsg:'First paste a link.',
+    emptyDetail:'Copy the link from the message you received and tap “Paste link”.',
+    loadingMsg:'Checking the link…',
+    loadingDetail:'This can take up to 10 seconds. Please do not close the page.',
+    serverFail:'We could not check the link right now.',
+    serverBad:'We could not check the link right now.',
+    dangerMsg:'Do not open this link',
+    unsureMsg:'Be careful with this link',
+    unknownMsg:'We cannot confirm this link is safe',
+    unknownDetail:'When in doubt, do not open it.',
+    safeMsg:'This address matches the official one',
+    safeDetail:'Even so, never give your password, PIN or codes if they are asked for by message or phone call.',
+    errMsg:'We could not check the link',
+    errRetry:'Please try again in a moment. Meanwhile, do not open it.',
+    timeout:'The check took too long. Please try again in a moment. Meanwhile, do not open it.',
     safetySteps:[
-      'Do not enter passwords, codes or bank details on the link.',
-      'Go to your institution through its official app or by typing the address you already knew.',
-      'If you already shared data, contact the institution through its official channels.'
+      'Do not type passwords, codes or bank details on that link.',
+      'To go to your bank, use its official app or type the address you already know yourself.',
+      'If you already shared data, call your bank at the number on the back of your card.'
     ],
+    // "Paste link" button
+    pasteEmptyMsg:'There is no copied link.',
+    pasteEmptyDetail:'First copy the link from the message (hold your finger on the link and choose “Copy”), then tap “Paste link”.',
+    pasteDeniedMsg:'Your browser did not allow automatic pasting.',
+    pasteDeniedDetail:'Tap the white box, hold your finger down and choose “Paste”. On a computer you can also use Ctrl + V.',
+    pasteOkMsg:'Link pasted.',
+    pasteOkDetail:'Now tap “Check link”.',
     // Review
     count:(n,total)=>n+' of '+total+' signs checked',
     repaso:[
@@ -103,16 +116,19 @@ const I18N_COMMON = [
 // Solo para index.html (se aplican si existe #verificacion)
 const I18N_INDEX = [
   ['.hero h1','Before you click, <em>check the link.</em>'],
-  ['.hero p.lead','Secura is a guide for older adults in the GAM to recognize links from financial institutions that try to steal your information and your money — explained without technical jargon.'],
-  ['.cta-row .btn-primary','What is phishing?'],
-  ['.cta-row .btn-ghost','Warning signs'],
+  ['.hero p.lead','Secura is a guide for older adults in the GAM to recognize fake links from banks and financial institutions that try to steal your information and your money. Explained without technical words.'],
+  ['#ctaCheck','<span aria-hidden="true">🔍</span> Check a link'],
+  ['#ctaPhish','What is phishing?'],
+  ['#ctaSignals','Warning signs'],
   ['.fake-msg > div:not(.from)','Your account will be suspended today. Verify your data immediately to avoid being blocked. Go to the following link:'],
   ['.hero-card .callout span:last-child','Urgency, capital letters and a link that does not belong to the real bank: three typical signs of phishing.'],
   ['.btn-card','Check links'],
 
   ['#verificacion-titulo','Link verification'],
-  ['.domain-checker .sub','Artificial intelligence analyzes the link without opening it. Its result is only a guide and does not guarantee safety.'],
-  ['label[for="urlToCheck"]','URL you want to check'],
+  ['.domain-checker .sub','We check the link without opening it, with the help of artificial intelligence. The result is only a guide: it does not guarantee the link is safe.'],
+  ['.trust-note span:last-child','Secura will never ask for your passwords, PIN or bank details. You only paste the link here.'],
+  ['label[for="urlToCheck"]','Paste the link you received here'],
+  ['#pasteBtn','<span aria-hidden="true">📋</span> Paste link'],
   ['#domainCheckerForm button[type="submit"]','Check link'],
   ['.quick-guide h3','Quick guide: how to copy and paste a link without opening it'],
   ['.guide-step:nth-child(1) h4','Watch the step-by-step video'],
@@ -122,28 +138,30 @@ const I18N_INDEX = [
   ['.guide-step:nth-child(2) p','Here you will see an example of how to use the checker.'],
   ['.guide-step:nth-child(2) .media-empty','Space for the example'],
 
-  ['#ayuda h2','What to do if you think you fell for it'],
-  ['#ayuda .sub','Opening the link does not mean your information was stolen; the risk increases when you enter data or download files.'],
+  ['#ayuda h2','What to do if you think you fell for the scam'],
+  ['#ayuda .sub','Opening the link does not mean your information was stolen. The risk increases when data is typed in or files are downloaded.'],
   ['#ayuda .step:nth-child(1) h3','Change your passwords'],
-  ['#ayuda .step:nth-child(1) p','If you entered any password, change it from the official site.'],
-  ['#ayuda .step:nth-child(2) h3','Contact your bank'],
-  ['#ayuda .step:nth-child(2) p','If you shared bank details, contact the bank immediately through its official number.'],
-  ['#ayuda .step:nth-child(3) h3','Check your devices'],
-  ['#ayuda .step:nth-child(3) p','If you downloaded a suspicious file, do not open it; uninstall it or ask for help.'],
+  ['#ayuda .step:nth-child(1) p','If you typed any password, change it from the official app or website.'],
+  ['#ayuda .step:nth-child(2) h3','Call your bank'],
+  ['#ayuda .step:nth-child(2) p','If you shared bank details, call your bank’s official number right away. You can find it on the back of your card.'],
+  ['#ayuda .step:nth-child(3) h3','Check your phone or computer'],
+  ['#ayuda .step:nth-child(3) p','If you downloaded a suspicious file, do not open it: delete it or ask someone you trust for help.'],
   ['#ayuda .step:nth-child(4) h3','Ask for help and report it'],
-  ['#ayuda .step:nth-child(4) p','Tell someone you trust what happened, keep evidence and report it to <a href="tel:800-8000-645">800-8000-645</a> (OIJ).'],
+  ['#ayuda .step:nth-child(4) p','Tell someone you trust what happened, keep evidence (for example, a photo of the message) and report it to the OIJ.'],
+  ['#ayuda .btn-call','<span aria-hidden="true">📞</span> Call the OIJ: <span class="nowrap">800-8000-645</span>'],
 
-  ['#recursos h2','Other sites that help you verify links'],
-  ['#recursos .sub','These pages let you analyze a link before opening it. Secura aims to explain the same thing in simpler language.'],
+  ['#recursos h2','Other sites that help you check links'],
+  ['#recursos .sub','These pages also check links before you open them. Secura explains the same thing in simpler language.'],
+  ['#recursos .lang-note','Page in English'],
   ['#recursos .resource-card:nth-child(1) p','Checks whether a site has been flagged as dangerous.'],
   ['#recursos .resource-card:nth-child(2) p','Analyzes a link or file with multiple security engines.'],
   ['#recursos .resource-card:nth-child(3) p','Community database of sites reported as phishing.'],
-  ['#recursos .resource-card a.go','Visit page <span aria-hidden="true">→</span>']
+  ['#recursos .resource-card a.go','Open page <span aria-hidden="true">↗</span> <span class="new-tab">(opens in a new tab)</span>']
 ];
 
 // [selector, atributo, texto en inglés]
 const I18N_ATTR = [
-  ['#urlToCheck','placeholder','https://www.example.com'],
+  ['#urlToCheck','placeholder','Example: www.example.com'],
   ['#menuBtn','aria-label','Open menu'],
   ['nav.links','aria-label','Main navigation'],
   ['#mobileNav','aria-label','Mobile navigation'],
@@ -481,25 +499,45 @@ if(goToChecker){
 const domainCheckerForm = document.getElementById("domainCheckerForm");
 const urlToCheck = document.getElementById("urlToCheck");
 const domainResult = document.getElementById("domainResult");
+const pasteBtn = document.getElementById("pasteBtn");
+
+// Ícono grande para cada tipo de resultado
+const ICONOS = {
+  safe: "✅",
+  danger: "⛔",
+  warning: "⚠️",
+  loading: "⏳",
+  info: "📋"
+};
 
 function showDomainResult(status, message, details = [], steps = []) {
   domainResult.hidden = false;
   domainResult.className = "domain-result " + status;
   domainResult.replaceChildren();
 
+  const icono = document.createElement("span");
+  icono.className = "result-icon";
+  icono.setAttribute("aria-hidden", "true");
+  icono.textContent = ICONOS[status] || "ℹ️";
+
+  const cuerpo = document.createElement("div");
+  cuerpo.className = "result-body";
+
   const titulo = document.createElement("strong");
+  titulo.className = "result-title";
   titulo.textContent = message;
-  domainResult.appendChild(titulo);
+  cuerpo.appendChild(titulo);
 
   details.forEach(detail => {
     const p = document.createElement("p");
     p.className = "result-detail";
     p.textContent = detail;
-    domainResult.appendChild(p);
+    cuerpo.appendChild(p);
   });
 
   if (steps.length) {
     const tituloPasos = document.createElement("p");
+    tituloPasos.className = "result-steps-title";
     tituloPasos.textContent = t("whatToDo");
 
     const lista = document.createElement("ol");
@@ -510,8 +548,45 @@ function showDomainResult(status, message, details = [], steps = []) {
       lista.appendChild(li);
     });
 
-    domainResult.append(tituloPasos, lista);
+    cuerpo.append(tituloPasos, lista);
   }
+
+  domainResult.append(icono, cuerpo);
+}
+
+// Si la persona pega el mensaje completo, se toma solo el primer enlace.
+function extraerEnlace(texto) {
+  const limpio = String(texto || "").trim();
+  if (!/\s/.test(limpio)) return limpio;
+  const encontrado = limpio.match(
+    /(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+|[a-z0-9-]+(?:\.[a-z0-9-]+)+\/[^\s<>"']*|[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}\b)/i
+  );
+  return encontrado ? encontrado[0].replace(/[.,;:!?)\]]+$/, "") : limpio;
+}
+
+// ---------- Botón "Pegar enlace" ----------
+if (pasteBtn && urlToCheck) {
+  pasteBtn.addEventListener("click", async () => {
+    if (!navigator.clipboard || !navigator.clipboard.readText) {
+      showDomainResult("info", t("pasteDeniedMsg"), [t("pasteDeniedDetail")]);
+      urlToCheck.focus();
+      return;
+    }
+    try {
+      const texto = await navigator.clipboard.readText();
+      if (!texto || !texto.trim()) {
+        showDomainResult("info", t("pasteEmptyMsg"), [t("pasteEmptyDetail")]);
+        return;
+      }
+      urlToCheck.value = extraerEnlace(texto);
+      showDomainResult("info", t("pasteOkMsg"), [t("pasteOkDetail")]);
+      const enviar = domainCheckerForm.querySelector('button[type="submit"]');
+      if (enviar) enviar.focus();
+    } catch (error) {
+      showDomainResult("info", t("pasteDeniedMsg"), [t("pasteDeniedDetail")]);
+      urlToCheck.focus();
+    }
+  });
 }
 
 if (domainCheckerForm) {
@@ -522,7 +597,13 @@ if (domainCheckerForm) {
   domainCheckerForm.addEventListener("submit", async event => {
     event.preventDefault();
 
-    let enlace = urlToCheck.value.trim();
+    let enlace = extraerEnlace(urlToCheck.value);
+
+    if (!enlace) {
+      showDomainResult("info", t("emptyMsg"), [t("emptyDetail")]);
+      urlToCheck.focus();
+      return;
+    }
 
     try {
       if (!/^https?:\/\//i.test(enlace)) {
@@ -584,7 +665,13 @@ if (domainCheckerForm) {
       }
 
       if (!respuesta.ok) {
-        throw new Error(datos.error || t("serverFail"));
+        // Los errores 400 traen un mensaje claro para la persona;
+        // los demás (500, etc.) se muestran con un texto general.
+        const err = new Error(
+          respuesta.status === 400 && datos.error ? datos.error : t("serverFail")
+        );
+        err.esValidacion = respuesta.status === 400;
+        throw err;
       }
 
       const niveles = ["alto", "medio", "indeterminado", "bajo"];
@@ -596,46 +683,42 @@ if (domainCheckerForm) {
         throw new Error(t("serverBad"));
       }
 
-      const explicacion = [datos.explicacion];
-
       if (datos.riesgo === "bajo") {
-  showDomainResult(
-    "safe",
-    lang === "en"
-  ? "Recognized domain"
-  : "Dominio reconocido",
-    [datos.explicacion]
-  );
-} else if (datos.riesgo === "alto") {
+        showDomainResult("safe", t("safeMsg"), [
+          datos.explicacion,
+          t("safeDetail")
+        ]);
+      } else if (datos.riesgo === "alto") {
         showDomainResult(
           "danger",
           t("dangerMsg"),
-          explicacion,
+          [datos.explicacion],
           t("safetySteps")
         );
       } else if (datos.riesgo === "medio") {
         showDomainResult(
           "warning",
           t("unsureMsg"),
-          explicacion,
+          [datos.explicacion],
           t("safetySteps")
         );
       } else {
         showDomainResult(
           "warning",
-          t("unsureMsg"),
-          [...explicacion, t("unsureDetail")],
+          t("unknownMsg"),
+          [datos.explicacion, t("unknownDetail")],
           t("safetySteps")
         );
       }
 
     } catch (error) {
-      showDomainResult("warning", t("errMsg"), [
-        error.name === "AbortError"
-          ? t("timeout")
-          : t("detailLabel") + error.message,
-        t("errNoClass")
-      ]);
+      if (error.name === "AbortError") {
+        showDomainResult("warning", t("errMsg"), [t("timeout")]);
+      } else if (error.esValidacion) {
+        showDomainResult("warning", t("invalidMsg"), [error.message]);
+      } else {
+        showDomainResult("warning", t("errMsg"), [t("errRetry")]);
+      }
     } finally {
       boton.disabled = false;
     }

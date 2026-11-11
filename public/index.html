@@ -151,18 +151,22 @@
       <section class="hero">
         <div class="wrap hero-grid">
           <div>
-            <h1>Antes de hacer click, <em>revisa el enlace.</em></h1>
+            <h1>Antes de hacer clic, <em>revise el enlace.</em></h1>
             <p class="lead">
               Secura es una guía pensada para personas adultas mayores en la
-              GAM, para reconocer links de entidades financieras que buscan
-              robar tu información y tu dinero — explicado sin tecnicismos.
+              GAM, para reconocer enlaces falsos de bancos y entidades
+              financieras que buscan robar su información y su dinero.
+              Explicado sin palabras técnicas.
             </p>
           </div>
           <div class="cta-row">
-            <a class="btn btn-primary" href="que-es-phishing.html"
+            <a class="btn btn-primary btn-big" id="ctaCheck" href="#verificacion"
+              ><span aria-hidden="true">🔍</span> Revisar un enlace</a
+            >
+            <a class="btn btn-ghost" id="ctaPhish" href="que-es-phishing.html"
               >¿Qué es el phishing?</a
             >
-            <a class="btn btn-ghost" href="practica.html"
+            <a class="btn btn-ghost" id="ctaSignals" href="practica.html"
               >Señales de alerta</a
             >
           </div>
@@ -179,25 +183,37 @@
           <div class="section-head">
             <h2 id="verificacion-titulo">Verificación de enlaces</h2>
             <p class="sub">
-              La inteligencia artificial analiza el enlace sin abrirlo. Su
-              resultado es orientativo y no garantiza seguridad.
+              Revisamos el enlace sin abrirlo, con ayuda de inteligencia
+              artificial. El resultado es una orientación: no garantiza que
+              el enlace sea seguro.
+            </p>
+            <p class="trust-note">
+              <span aria-hidden="true">🔒</span>
+              <span>Secura nunca le pedirá contraseñas, PIN ni datos bancarios.
+              Aquí solo se pega el enlace.</span>
             </p>
           </div>
 
           <form class="domain-checker-form" id="domainCheckerForm" novalidate>
-            <label for="urlToCheck">URL que quieres comprobar</label>
+            <label for="urlToCheck">Pegue aquí el enlace que recibió</label>
             <div class="domain-checker-input">
               <input
                 id="urlToCheck"
                 name="urlToCheck"
-                type="url"
-                placeholder="https://www.ejemplo.com"
+                type="text"
+                inputmode="url"
+                placeholder="Ejemplo: www.ejemplo.com"
                 autocomplete="off"
                 autocapitalize="off"
                 spellcheck="false"
                 required
               />
-              <button class="btn btn-primary" type="submit">
+              <button class="btn btn-ghost btn-paste" type="button" id="pasteBtn">
+                <span aria-hidden="true">📋</span> Pegar enlace
+              </button>
+            </div>
+            <div class="domain-checker-actions">
+              <button class="btn btn-primary btn-big" type="submit">
                 Comprobar enlace
               </button>
               <button
@@ -227,10 +243,10 @@
               <article class="guide-step">
                 <div class="guide-text">
                   <div>
-                    <h4>Mira el video paso a paso</h4>
+                    <h4>Mire el video paso a paso</h4>
                     <p>
-                      Copia el enlace sospechoso sin abrirlo, pégalo en el
-                      verificador y presiona “Comprobar enlace”.
+                      Copie el enlace sospechoso sin abrirlo, péguelo en el
+                      verificador y presione “Comprobar enlace”.
                     </p>
                   </div>
                 </div>
@@ -242,7 +258,7 @@
                     poster="media/V1_ENLACES.jpg"
                   >
                     <source src="media/V1_ENLACES.mp4" type="video/mp4" />
-                    Tu navegador no puede reproducir este video.
+                    Su navegador no puede reproducir este video.
                   </video>
                 </figure>
               </article>
@@ -252,7 +268,7 @@
                 <div class="guide-text">
                   <div>
                     <h4>Ejemplo</h4>
-                    <p>Aquí verás un ejemplo de cómo usar el verificador.</p>
+                    <p>Aquí verá un ejemplo de cómo usar el verificador.</p>
                   </div>
                 </div>
                 <div class="hero-card">
@@ -288,20 +304,21 @@
       <section id="ayuda">
         <div class="wrap">
           <div class="section-head">
-            <h2>Qué hacer si crees que caíste</h2>
+            <h2>Qué hacer si cree que cayó en el engaño</h2>
             <p class="sub">
-              Abrir el enlace no significa que te hayan robado la información,
-              el riesgo aumenta cuando ingresas datos o descargas archivos.
+              Abrir el enlace no significa que le hayan robado la información.
+              El riesgo aumenta cuando se escriben datos o se descargan
+              archivos.
             </p>
           </div>
           <ol class="steps">
             <li class="step">
               <div class="num" aria-hidden="true">1</div>
               <div>
-                <h3>Cambia tus contraseñas</h3>
+                <h3>Cambie sus contraseñas</h3>
                 <p>
-                  Si ingresaste alguna contraseña, cámbiala desde el sitio
-                  oficial.
+                  Si escribió alguna contraseña, cámbiela desde la aplicación
+                  o la página oficial.
                 </p>
               </div>
             </li>
@@ -309,31 +326,35 @@
               <!-- 🔜 Aquí irá el selector de banco con su número de teléfono (pendiente) -->
               <div class="num" aria-hidden="true">2</div>
               <div>
-                <h3>Contacta a tu banco</h3>
+                <h3>Llame a su banco</h3>
                 <p>
-                  Si compartiste datos bancarios, contacta inmediatamente al
-                  banco mediante su número oficial.
+                  Si compartió datos bancarios, llame de inmediato al número
+                  oficial de su banco. Lo encuentra al reverso de su tarjeta.
                 </p>
               </div>
             </li>
             <li class="step">
               <div class="num" aria-hidden="true">3</div>
               <div>
-                <h3>Revisa tus dispositivos</h3>
+                <h3>Revise su celular o computadora</h3>
                 <p>
-                  Si descargaste algún archivo sospechoso, no lo abras,
-                  desinstálalo o pide ayuda.
+                  Si descargó algún archivo sospechoso, no lo abra: bórrelo o
+                  pida ayuda a alguien de confianza.
                 </p>
               </div>
             </li>
             <li class="step">
               <div class="num" aria-hidden="true">4</div>
               <div>
-                <h3>Pide ayuda y denuncia</h3>
+                <h3>Pida ayuda y denuncie</h3>
                 <p>
-                  Cuéntale a alguien de confianza lo sucedido, guarda pruebas y
-                  denuncia al <a href="tel:800-8000-645">800-8000-645</a> (OIJ).
+                  Cuéntele a alguien de confianza lo que pasó, guarde pruebas
+                  (por ejemplo, una foto del mensaje) y denuncie ante el OIJ.
                 </p>
+                <a class="btn btn-call" href="tel:800-8000-645"
+                  ><span aria-hidden="true">📞</span> Llamar al OIJ:
+                  <span class="nowrap">800-8000-645</span></a
+                >
               </div>
             </li>
           </ol>
@@ -344,10 +365,10 @@
       <section id="recursos" class="section-white">
         <div class="wrap">
           <div class="section-head">
-            <h2>Otros sitios que te ayudan a verificar enlaces</h2>
+            <h2>Otros sitios que le ayudan a revisar enlaces</h2>
             <p class="sub">
-              Estas páginas permiten analizar un enlace antes de abrirlo. Secura
-              busca explicar lo mismo, pero con un lenguaje más sencillo.
+              Estas páginas también revisan enlaces antes de abrirlos. Secura
+              explica lo mismo, pero con un lenguaje más sencillo.
             </p>
           </div>
           <div class="grid-3">
@@ -358,27 +379,32 @@
                 href="https://transparencyreport.google.com/safe-browsing/search"
                 target="_blank"
                 rel="noopener"
-                >Consultar página <span aria-hidden="true">→</span></a
+                >Abrir página <span aria-hidden="true">↗</span>
+                <span class="new-tab">(se abre en otra pestaña)</span></a
               >
             </div>
             <div class="resource-card">
               <h3>VirusTotal</h3>
+              <p class="lang-note">Página en inglés</p>
               <a
                 class="go"
                 href="https://www.virustotal.com"
                 target="_blank"
                 rel="noopener"
-                >Consultar página <span aria-hidden="true">→</span></a
+                >Abrir página <span aria-hidden="true">↗</span>
+                <span class="new-tab">(se abre en otra pestaña)</span></a
               >
             </div>
             <div class="resource-card">
               <h3>PhishTank</h3>
+              <p class="lang-note">Página en inglés</p>
               <a
                 class="go"
                 href="https://phishtank.org"
                 target="_blank"
                 rel="noopener"
-                >Consultar página <span aria-hidden="true">→</span></a
+                >Abrir página <span aria-hidden="true">↗</span>
+                <span class="new-tab">(se abre en otra pestaña)</span></a
               >
             </div>
           </div>
