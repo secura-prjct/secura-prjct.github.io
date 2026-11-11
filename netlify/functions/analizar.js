@@ -33,7 +33,7 @@ exports.handler = async (event) => {
     };
   }
 
-  const { status, body } = await analizarEnlace(datos?.enlace);
+  const { status, body } = await analizarEnlace(datos?.enlace, datos?.idioma);
 
   return {
     statusCode: status,

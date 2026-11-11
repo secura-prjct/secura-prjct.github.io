@@ -649,7 +649,7 @@ if (domainCheckerForm) {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ enlace }),
+          body: JSON.stringify({ enlace, idioma: lang }),
           signal: controller.signal
         });
       } finally {

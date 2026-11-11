@@ -15,7 +15,7 @@ app.use(express.json({ limit: "10kb" }));
 app.use(express.static("public"));
 
 app.post("/api/analizar", async (req, res) => {
-  const { status, body } = await analizarEnlace(req.body?.enlace);
+  const { status, body } = await analizarEnlace(req.body?.enlace, req.body?.idioma);
   res.status(status).json(body);
 });
 
