@@ -813,7 +813,7 @@
     min-height:280px; background:rgba(255,255,255,.16); border:2px dashed rgba(255,255,255,.4);
     color:#fff; opacity:1; font-weight:700; font-size:1.05rem;
   }
-  .practice-card .media-slot video{border-radius:16px; max-width:360px;}
+  .practice-card .media-slot video{border-radius:16px; max-width:360px; margin-inline:auto;}
 
   .checklist{display:grid; grid-template-columns:1fr 1fr; gap:18px 24px; list-style:none; padding:0; margin:0 0 30px;}
   .checklist li{
